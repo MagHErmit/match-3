@@ -13,14 +13,21 @@ namespace Match_3
                  new RenderWindow(new VideoMode(740, 480), "Match 3");
             window.SetVerticalSyncEnabled(true);
             window.SetFramerateLimit(60);
+            window.Closed += (_, e) => window.Close();
+
             Texture tb = new Texture(path + "Textures\\background.png");
             Sprite background = new Sprite(tb);
-            window.Draw(background);
-            window.Closed += (_, e) => window.Close();
+
+            Texture tgem = new Texture(path + "Gems\\green.png");
+            Sprite gem = new Sprite(tgem);
+            gem.TextureRect = new IntRect(0, 0, 64, 64);
+
             while (window.IsOpen)
             {
                 window.DispatchEvents();
                 window.Clear(Color.Black);
+                window.Draw(background);
+                window.Draw(gem);
                 window.Display();
             }
         }
